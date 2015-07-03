@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CodeEvalConseqPrimes {
     public static void main(String[] args) {
-        int test = 12;
+        int test = 16;
 
         int[][] array = new int[test][test];
         for (int i = 0; i < test ; i++) {

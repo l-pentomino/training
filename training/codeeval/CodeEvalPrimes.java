@@ -3,12 +3,13 @@ package gk.training.codeeval;
 import java.util.*;
 
 public class CodeEvalPrimes {
+    static int maxDepth;
+    static Map<Integer, Chain> solved = new HashMap<Integer, Chain>();
 
     static class Chain {
         int chains;
         int maxN;
         Integer[] primes;
-
 
         public Chain(int max) {
             maxN = max;
@@ -16,8 +17,20 @@ public class CodeEvalPrimes {
         }
 
         public int combinations() {
-            List<Integer> sequence = new ArrayList<Integer>();
-            recurse(1, 0, sequence, 0);
+            chains = 0;
+            recurse(1, 0);
+            return chains;
+        }
+
+        public int combinations(Chain other) {
+            if (other.maxN >= this.maxN) return combinations();
+            chains = other.chains;
+            int partial = 0;
+            for (int i = 0; i < other.maxN; i++) {
+                partial = addBead(partial, i);
+            }
+            for (int i = 2; i <= other.maxN; i++)
+            if (isPrime(i + 1)) recurse(i, partial);
             return chains;
         }
 
@@ -61,63 +74,58 @@ public class CodeEvalPrimes {
         //constructs the prime-sum "chains" recursively:
         //for a chain with n currently connected beads,
         //chain(n+1) = chain(n) + (prime_sums[i] - n-th bead) for i = 0..sizeof(prime_sums)
-        private void recurse(int i, int beads,
-                             List<Integer> sequence, int level) {
-            List<Integer> next = new ArrayList<Integer>();
+        private void recurse(int nthBead, int beads){
+            List<Integer> toExplore = new LinkedList<Integer>();
 
-            char[] spaces = new char[level];
-            Arrays.fill(spaces, ' ');
+            //append current bead to the chain
+            int nextBeads = addBead(beads, nthBead - 1);
 
-            int nextBeads = addBead(beads, i - 1);
-            if (totalUsed(nextBeads, maxN) == maxN && isPrime(i + 1)) chains++;
-            List<Integer> newSequence = new ArrayList<Integer>();
-            for (Integer n : sequence) {
-                newSequence.add(n);
+            //if the last bead was added, check if it sums to a prime with the first bead (1)
+            //before incrementing counter:
+            if (totalUsed(nextBeads, maxN) == maxN && isPrime(nthBead + 1)) {
+                chains++;
+                return;
             }
-            newSequence.add(i);
 
+            int pindex = 0; int diff = primes[pindex] - nthBead;
 
-            say("\n"+String.valueOf(spaces) + "Exploring "+ i + ":");
-            sayln(String.valueOf(spaces) + Arrays.toString(newSequence.toArray()));
-
-            int pindex = 0;
-            int diff = primes[pindex] - i;
+            //advance within the primes table until the first prime is found
+            //that is large enough to contain current bead's value
             while (diff <= 1) {
                 pindex++;
-                diff = primes[pindex] - i;
+                diff = primes[pindex] - nthBead;
             }
+
+            //find all possible prime sums that contain the current bead,
+            //making the difference to be the beads to explore on next iterations
             while (pindex < primes.length) {
-                diff = primes[pindex] - i;
+                diff = primes[pindex] - nthBead;
                 if (diff <= maxN && !containsBead(beads, diff - 1)) {
-                    next.add(diff);
-                    sayln(String.valueOf(spaces) + "Adding " + diff);
+                    toExplore.add(diff);
                 }
                 pindex++;
             }
 
-            for (int val : next) recurse(val,nextBeads, newSequence, level + 1);
-            if (newSequence.size() == maxN) {
-                sayln("--------");
-                sayln(Arrays.toString(newSequence.toArray()));
+            for (int next : toExplore) {
+                maxDepth++;
+                recurse(next, nextBeads);
             }
         }
-
-
-
     }
 
-    private static void sayln(Object o) {
+    public static void sayln(Object o) {
         System.out.println(o);
     }
 
-    private static void say(Object o) {
+    public static void say(Object o) {
         System.out.print(o + " ");
     }
 
     public static void main(String[] args) {
-        for (int i = 2; i < 18; i += 2) {
+        for (int i = 8; i <= 18; i += 10) {
             Chain ch = new Chain(i);
             sayln(ch.combinations());
         }
+        sayln("Max recursion depth " + maxDepth);
     }
 }
