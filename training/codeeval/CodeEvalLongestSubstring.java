@@ -1,13 +1,17 @@
 package gk.training.codeeval;
 
+import java.io.InputStream;
+
 public class CodeEvalLongestSubstring {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String s = "thisisatest;testing123testing";
 
 
         String[] arr = s.split(";");
         System.out.println(lcs(arr[0], arr[1]));
+
+
     }
 
     public static String lcs(String s1, String s2) {
@@ -22,7 +26,8 @@ public class CodeEvalLongestSubstring {
                 }
 
         String result = "";
-        for (int row = s1.length(), col = s2.length(); row != 0 && col != 0; ) {
+        int row = s1.length(), col = s2.length();
+        while (row != 0 && col != 0) {
             if (table[row][col] == table[row-1][col]) {
                 row--;
             } else {
