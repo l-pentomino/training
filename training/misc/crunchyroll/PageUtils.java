@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 
 public class PageUtils {
-    static final String BASE_URL = "http://www.crunchyroll.com/tech-challenge/roaming-math/igoreksf@gmail.com/";
+    static final String BASE_URL = "http://www.crunchyroll.com/tech-challenge/roaming-math/$$$$$@email.com/";
 
     private static String toJSONString(String header, long value) {
         String result =  '"' + header + "\":" + value;
