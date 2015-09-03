@@ -7,8 +7,10 @@ import java.io.IOException;
 
 /**
  * Date: 6/30/15
+ * Check if two numbers have set bits at the specified positions
+ * https://www.codeeval.com/open_challenges/19/
  */
-public class CodeEvalIdenticalBits {
+public class CodeEval19 {
 
         public static void main (String[] args) throws IOException {
             File file = new File(args[0]);
@@ -30,5 +32,3 @@ public class CodeEvalIdenticalBits {
             return ((mask1 >>> p1) == (mask2  >>> p2));
         }
     }
-
-

@@ -2,8 +2,10 @@ package gk.training.codeeval;
 
 /**
  * Date: 7/1/15
+ * Interrupted bubble sort
+ * https://www.codeeval.com/open_challenges/58/
  */
-public class CodeEvalInterruptedBubbleSort {
+public class CodeEval158 {
 
     public static void main(String[] args) {
         String input = "54 46 0 34 15 48 47 53 25 18 50 5 21 76 62 48 74 1 43 74 78 29 | 1";

@@ -5,8 +5,10 @@ import java.util.List;
 
 /**
  * Date: 7/2/15
+ * Classic DP algorithm to find the longest common substring of two strings
+ * https://www.codeeval.com/open_challenges/6/
  */
-public class LongestSubstringClassic {
+public class CodeEval6 {
 
 
     public static String longestSubstr(String s1, String s2) {

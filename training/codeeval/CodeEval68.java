@@ -4,8 +4,9 @@ import java.util.Stack;
 
 /**
  * Date: 7/2/15
+ * Check if the expression is correctly parenthesized
  */
-public class CodeEvalParehtns {
+public class CodeEval68 {
     public static void main(String[] args) {
         String[] tests = {"", "{[]}", "({}[()})", "[{}[]", "{([]aa kh})", "{[aaa(hkh)]}", "((((}))))))"};
         for (String test : tests) {

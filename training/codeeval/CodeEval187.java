@@ -2,7 +2,13 @@ package gk.training.codeeval;
 
 import java.util.*;
 
-public class CodeEvalPrimes {
+/**
+ * Finds all the combinations of consecutive prime sum "chains"
+ * in a looping contiguous sequence of integers from 1 to N
+ */
+
+public class CodeEval187 {
+
     static int maxDepth;
     static Map<Integer, Chain> solved = new HashMap<Integer, Chain>();
 

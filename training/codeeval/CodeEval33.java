@@ -5,17 +5,17 @@ import java.util.*;
 
 /**
  * Date: 6/30/15
+ * Check if an integer is the sum of two perfect squares
+ * https://www.codeeval.com/open_challenges/33/
  */
-public class CodeEvalSumOfSquares {
+public class CodeEval33 {
 
     public static void main(String[] args) throws Exception {
         Random rnd = new Random();
         int[] nums = new int[1000];
         for (int i = 0; i < nums.length; i++) {
            nums[i] = rnd.nextInt(Integer.MAX_VALUE);
-   //         System.out.println(nums[i]);
         }
-        //int[] nums = {50, 0, 9 + 9, 1 + 0, 4 + 4, 4 + 9, 5, 4 + 2, 9 + 18, 64 + 81, 7, 64 + 64, 25, -25};
         Scanner sc = new Scanner(new File(System.getProperty("user.home") + "/numberstest.txt"));
         int count = 0;
         while (sc.hasNextLine()) {
@@ -30,7 +30,6 @@ public class CodeEvalSumOfSquares {
                                            + "\tMine: " + mine + ":" + (control == mine ? "PASSED" : "FAILED"));
             }
             if (mine != control) count++;
-            //System.out.println("Number: " + num + "\tSums:" + sumsOfSquares(num) + "\n");
         }
         System.out.println("Failed cases: " + count);
     }

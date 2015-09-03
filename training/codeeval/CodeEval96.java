@@ -2,8 +2,10 @@ package gk.training.codeeval;
 
 /**
  * Date: 6/30/15
+ * Swaps letter case in a string
+ * https://www.codeeval.com/open_challenges/96/
  */
-public class CodeEvalSwitchCase {
+public class CodeEval96 {
     public static void main(String[] args) {
         String input = "' ',Hello woRld, I am HerE; Not ON youR LIFE!";
         String[] inputs = input.split(",\\s*");

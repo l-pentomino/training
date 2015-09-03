@@ -1,12 +1,12 @@
 package gk.training.codeeval;
 
-import java.io.File;
 import java.util.*;
 
 /**
  * Date: 6/30/15
+ * Find max path through a triangle of integers
  */
-public class CodeEvalPathTriangle {
+public class CodeEval89 {
 
     //implement triangle as a pseudo-binary tree where a parent can share
     //a child with another parent (one parent's left child is next parent's right)
@@ -54,7 +54,6 @@ public class CodeEvalPathTriangle {
                     next[childIndex + 1] = new Node(arr[childIndex + 1]);
                     parent.right = next[childIndex + 1];
                     childIndex++;
-                    //         System.out.println("Parent " + parent + " children " + parent.left + ", " + parent.right);
                 }
                 current = next;
             }
@@ -69,11 +68,8 @@ public class CodeEvalPathTriangle {
                 State currentState = stack.pop();
                 Node node = currentState.node;
                 System.out.println("\nCurrent node " + node);
-                //System.out.println("Local max " + currentState.localMax);
-                //System.out.println("Children: " + node.left + ", " + node.right);
                 if (node.left == null && node.right == null) {
                     if (max < currentState.localMax) max = currentState.localMax;
-       //             System.out.println();
                     continue;
                 }
                 stack.push(new State(node.left, currentState.localMax + node.left.value));
@@ -88,14 +84,5 @@ public class CodeEvalPathTriangle {
         String[] test = {"5", "9 6", "4 6 8", "0 7 1 5", "10 10 2 4 8"};
         Triangle t = new Triangle(Arrays.asList(test));
         System.out.println("Max: " + t.findMaxPath());
-
-        /*Scanner sc = new Scanner(new File(System.getProperty("user.home") + "/triangle.txt"));
-        List<String> lst = new ArrayList<String>();
-        while (sc.hasNextLine()) {
-            lst.add(sc.nextLine().trim());
-        }
-        Triangle ttr = new Triangle(lst);
-        System.out.println(ttr.findMaxPath());*/
-
     }
 }
