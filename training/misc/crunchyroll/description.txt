@@ -1,0 +1,7 @@
+Interview challenge for Crunchyroll
+
+Given a base URL and an expression represented in form of <funciton(arg1, arg2...)> <function(...))>.. calculate the integer ID of the next URL node which contains another expression-encoded ID, etc.
+
+Accessing URLs in that order, build the resulting link topology graph. Starting from the node marked START find the shortest part through the IDs to the destination marked END. 
+
+Functions expected: ADD, SUBTRACT, MULTIPLY, ABS
